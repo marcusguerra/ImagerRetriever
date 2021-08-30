@@ -1,0 +1,19 @@
+import requests
+import re
+from bs4 import BeautifulSoup
+
+encoding = 'utf-8'
+palavra_v = str(input(""))
+palavra = palavra_v.replace(" ", "+")
+site= "--"
+site = site + palavra
+resposta = requests.get(site)
+
+content = resposta.content
+
+site = BeautifulSoup(content, 'html.parser')
+
+images = site.findAll('img')
+
+for image in images:
+    print (image['src'])
